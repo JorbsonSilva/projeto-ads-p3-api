@@ -153,4 +153,14 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         }
     }
+
+    @GetMapping("/professores/destaque/{alunoId}")
+    public ResponseEntity<java.util.List<Usuario>> obterProfessoresDestaque(@PathVariable Long alunoId) {
+        try {
+            java.util.List<Usuario> professores = service.buscarProfessoresDestaquePorAluno(alunoId);
+            return ResponseEntity.ok(professores);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 }
